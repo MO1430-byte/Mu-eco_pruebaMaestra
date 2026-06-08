@@ -340,7 +340,6 @@ tab_gradiente, tab_conjugado, tab_newton = st.tabs([
 with tab_gradiente:
     st.subheader("🔧 Configuración - Descenso de Gradiente Estándar")
     
-    # VALOR AGREGADO: FUNCIONES DE PRUEBA
     benchmark_g = st.selectbox("🧪 Cargar Función de Prueba Clásica (Benchmark)", ["Ninguna (Personalizada)", "Función Esfera (Convexa, Fácil)", "Función de Rosenbrock (Valle, Desafiante)"], key="bench_g")
     
     c_grad1, c_grad2 = st.columns(2)
@@ -363,13 +362,13 @@ with tab_gradiente:
             default_function_g = " + ".join([f"x{i+1}^2" for i in range(min(n_vars_g,3))])
             default_x0_g = ", ".join(["0"] * n_vars_g)
             
-        funcion_str_g = st.text_input("Función Objetivo", value=default_function_g, key="func_g")
+        funcion_str_g = st.text_input("Función Objetivo", value=default_function_g, key=f"func_g_{benchmark_g}")
         
         if benchmark_g == "Ninguna (Personalizada)":
             ejemplo_g = " + ".join([f"x{i+1}^2" for i in range(n_vars_g)])
             st.caption(f"Escribir variables como {', '.join(var_names_g)}  \nEjemplo: {ejemplo_g}")
             
-        x0_str_g = st.text_input("Punto de Partida (x₀)", value=default_x0_g, key="x0_g")
+        x0_str_g = st.text_input("Punto de Partida (x₀)", value=default_x0_g, key=f"x0_g_{benchmark_g}")
         
     with c_grad2:
         max_iter_g = st.number_input("Número de Iteraciones", min_value=1, value=100, key="max_iter_g")
@@ -425,13 +424,13 @@ with tab_conjugado:
             default_function_cg = " + ".join([f"x{i+1}^2" for i in range(min(n_vars_cg,3))])
             default_x0_cg = ", ".join(["0"] * n_vars_cg)
             
-        funcion_str_cg = st.text_input("Función Objetivo", value=default_function_cg, key="func_cg")
+        funcion_str_cg = st.text_input("Función Objetivo", value=default_function_cg, key=f"func_cg_{benchmark_cg}")
         
         if benchmark_cg == "Ninguna (Personalizada)":
             ejemplo_cg = " + ".join([f"x{i+1}^2" for i in range(n_vars_cg)])
             st.caption(f"Escribir variables como {', '.join(var_names_cg)}  \nEjemplo: {ejemplo_cg}")
             
-        x0_str_cg = st.text_input("Punto de Partida (x₀)", value=default_x0_cg, key="x0_cg")
+        x0_str_cg = st.text_input("Punto de Partida (x₀)", value=default_x0_cg, key=f"x0_cg_{benchmark_cg}")
         
     with c_cg2:
         max_iter_cg = st.number_input("Número de Iteraciones", min_value=1, value=100, key="max_iter_cg")
@@ -477,13 +476,13 @@ with tab_newton:
             default_function_nw = " + ".join([f"x{i+1}^2" for i in range(min(n_vars_nw,3))])
             default_x0_nw = ", ".join(["0"] * n_vars_nw)
             
-        funcion_str_nw = st.text_input("Función Objetivo", value=default_function_nw, key="func_nw")
+        funcion_str_nw = st.text_input("Función Objetivo", value=default_function_nw, key=f"func_nw_{benchmark_nw}")
         
         if benchmark_nw == "Ninguna (Personalizada)":
             ejemplo_nw = " + ".join([f"x{i+1}^2" for i in range(n_vars_nw)])
             st.caption(f"Escribir variables como {', '.join(var_names_nw)}  \nEjemplo: {ejemplo_nw}")
             
-        x0_str_nw = st.text_input("Punto de Partida (x₀)", value=default_x0_nw, key="x0_nw")
+        x0_str_nw = st.text_input("Punto de Partida (x₀)", value=default_x0_nw, key=f"x0_nw_{benchmark_nw}")
         
     with c_nw2:
         max_iter_nw = st.number_input("Número de Iteraciones", min_value=1, value=100, key="max_iter_nw")
